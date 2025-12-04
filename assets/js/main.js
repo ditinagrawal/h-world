@@ -456,11 +456,8 @@ function ecCheckCookie() {
     });
 
     (function () {
-        var $ekkaToggle = $(".ec-side-toggle"),
-            $ekka = $(".ec-side-cart"),
-            $ecMenuToggle = $(".mobile-menu-toggle");
-
-        $ekkaToggle.on("click", function (e) {
+        // Use event delegation for dynamically loaded elements
+        $(document).on("click", ".ec-side-toggle", function (e) {
             e.preventDefault();
             var $this = $(this),
                 $target = $this.attr("href");
@@ -473,17 +470,17 @@ function ecCheckCookie() {
             }
         });
 
-        $(".ec-side-cart-overlay").on("click", function (e) {
+        $(document).on("click", ".ec-side-cart-overlay", function (e) {
             $(".ec-side-cart-overlay").fadeOut();
-            $ekka.removeClass("ec-open");
-            $ecMenuToggle.find("a").removeClass("close");
+            $(".ec-side-cart").removeClass("ec-open");
+            $(".mobile-menu-toggle").find("a").removeClass("close");
         });
 
-        $(".ec-close").on("click", function (e) {
+        $(document).on("click", ".ec-close", function (e) {
             e.preventDefault();
             $(".ec-side-cart-overlay").fadeOut();
-            $ekka.removeClass("ec-open");
-            $ecMenuToggle.find("a").removeClass("close");
+            $(".ec-side-cart").removeClass("ec-open");
+            $(".mobile-menu-toggle").find("a").removeClass("close");
         });
 
         $("body").on("click", ".ec-pro-content .remove", function () {
